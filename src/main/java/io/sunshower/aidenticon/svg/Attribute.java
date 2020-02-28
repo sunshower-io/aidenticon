@@ -12,6 +12,12 @@ public class Attribute implements Writable {
 
   @Override
   public void write(DocumentWriter writer) {
+    writer.write(" ");
+    writer.write(key);
+    writer.write("=");
+    writer.write("\"");
+    writer.write(value);
+    writer.write("\"");
 
   }
 }

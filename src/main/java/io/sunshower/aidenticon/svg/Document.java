@@ -15,7 +15,11 @@ public class Document {
   }
 
   public Document append(Node node) {
-    root.addChild(node);
+    Node actualNode = node;
+    while (actualNode.parent != null) {
+      actualNode = actualNode.parent;
+    }
+    root.addChild(actualNode);
     return this;
   }
 

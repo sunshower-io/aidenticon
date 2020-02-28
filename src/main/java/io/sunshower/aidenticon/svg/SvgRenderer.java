@@ -5,8 +5,17 @@ import io.sunshower.aidenticon.Polygon;
 import io.sunshower.aidenticon.Renderer;
 
 public class SvgRenderer implements Renderer {
+
+  final Document document;
+
+  public SvgRenderer() {
+    document = Document.create("svg");
+  }
+
   @Override
-  public void setBackgroundColor(int color) {}
+  public void setBackgroundColor(int color) {
+
+  }
 
   @Override
   public void add(Polygon polygon) {}
