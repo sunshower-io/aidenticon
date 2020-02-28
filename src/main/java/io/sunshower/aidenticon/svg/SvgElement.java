@@ -15,9 +15,13 @@ public class SvgElement {
     element.attr("preserveAspectRatio", "xMidYMid meet");
   }
 
-  public SvgElement setBackground(String fill, String opacity) {
+  public SvgElement() {
+    this(new Node("svg"), 100);
+  }
 
-    if (opacity != null) {
+  public SvgElement setBackground(String fill, int opacity) {
+
+    if (opacity >= 0) {
       element
           .child("rect")
           .attr("width", "100%")

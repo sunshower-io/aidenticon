@@ -58,4 +58,8 @@ public class SvgPath {
   static double svgValue(double value) {
     return Math.round((value * 10 + 0.5)) / 10D;
   }
+
+  public String getDataString() {
+    return dataString.toString();
+  }
 }

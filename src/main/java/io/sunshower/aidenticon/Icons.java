@@ -1,6 +1,5 @@
 package io.sunshower.aidenticon;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,54 +47,53 @@ public class Icons {
       selectedColorIndexes.add(index);
     }
 
+    renderShape(
+        graphics,
+        hash,
+        renderer,
+        0,
+        Shapes.Outer,
+        2,
+        3,
+        new int[][] {{1, 0}, {2, 0}, {2, 3}, {1, 3}, {0, 1}, {3, 1}, {3, 2}, {0, 2}},
+        availableColors,
+        selectedColorIndexes,
+        (int) x,
+        (int) y,
+        (int) cell);
 
     renderShape(
-            graphics,
-            hash,
-            renderer,
-            0,
-            Shapes.Outer,
-            2,
-            3,
-    new int[][]{
-                    {1, 0}, {2, 0}, {2, 3}, {1, 3}, {0, 1}, {3, 1}, {3, 2}, {0, 2}
-    }, availableColors,
-            selectedColorIndexes,
-            (int) x, (int) y, (int) cell);
+        graphics,
+        hash,
+        renderer,
+        1,
+        Shapes.Outer,
+        4,
+        5,
+        new int[][] {{0, 0}, {3, 0}, {3, 3}, {0, 3}},
+        availableColors,
+        selectedColorIndexes,
+        (int) x,
+        (int) y,
+        (int) cell);
 
     renderShape(
-            graphics,
-            hash,
-            renderer,
-            1,
-            Shapes.Outer,
-            4,
-            5,
-            new int[][]{
-                    {0, 0}, {3, 0}, {3, 3}, {0, 3}
-            }, availableColors,
-            selectedColorIndexes,
-            (int) x, (int) y, (int) cell);
-
-
-    renderShape(
-            graphics,
-            hash,
-            renderer,
-            2,
-            Shapes.Outer,
-            1,
-            -1,
-            new int[][]{
-                    {1, 1}, {2, 1}, {2, 2}, {1, 2}
-            }, availableColors,
-            selectedColorIndexes,
-            (int) x, (int) y, (int) cell);
+        graphics,
+        hash,
+        renderer,
+        2,
+        Shapes.Outer,
+        1,
+        -1,
+        new int[][] {{1, 1}, {2, 1}, {2, 2}, {1, 2}},
+        availableColors,
+        selectedColorIndexes,
+        (int) x,
+        (int) y,
+        (int) cell);
 
     renderer.finish();
   }
-
-
 
   static boolean isDuplicate(int[] values, int value, List<Integer> selectedColorIndexes) {
     for (int i = 0; i < values.length; i++) {

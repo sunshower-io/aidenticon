@@ -1,11 +1,14 @@
 package io.sunshower.aidenticon;
 
 public class Configuration {
+
+
+
   public boolean hasBackgroundColor() {
     return false;
   }
 
-  public int getBackgroundColor() {
+  public String getBackgroundColor() {
     return 0;
   }
 

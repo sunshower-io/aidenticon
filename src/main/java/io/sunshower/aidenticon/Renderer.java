@@ -2,7 +2,7 @@ package io.sunshower.aidenticon;
 
 public interface Renderer {
 
-  void setBackgroundColor(int color);
+  void setBackgroundColor(String color);
 
   void add(Polygon polygon);
 
