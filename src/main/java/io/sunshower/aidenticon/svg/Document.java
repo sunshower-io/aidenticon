@@ -26,4 +26,8 @@ public class Document {
   public void write(DocumentWriter writer) {
     root.write(writer);
   }
+
+  public Node root() {
+    return root;
+  }
 }

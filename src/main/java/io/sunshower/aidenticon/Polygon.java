@@ -14,4 +14,8 @@ public final class Polygon implements Shape {
     points.add(point);
     return this;
   }
+
+  public List<Point> getPoints() {
+    return points;
+  }
 }

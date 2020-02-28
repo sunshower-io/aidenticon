@@ -8,14 +8,12 @@ public class SvgRenderer implements Renderer {
 
   final Document document;
 
-  public SvgRenderer() {
+  public SvgRenderer(int size) {
     document = Document.create("svg");
   }
 
   @Override
-  public void setBackgroundColor(int color) {
-
-  }
+  public void setBackgroundColor(int color) {}
 
   @Override
   public void add(Polygon polygon) {}
