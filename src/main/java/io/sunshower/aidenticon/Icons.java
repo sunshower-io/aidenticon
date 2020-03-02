@@ -31,15 +31,15 @@ public class Icons {
 
     var hue = parseHex(hash, -7) / 0xFFFFFFFF;
     var availableColors = Theme.colorTheme(hue, configuration);
-    List<Integer> selectedColorIndexes = new ArrayList<>();
-    int index;
+    List<Long> selectedColorIndexes = new ArrayList<>();
+    long index;
 
     for (var i = 0; i < 3; i++) {
       index = parseHex(hash, 8 + i, 1) % availableColors.length;
-      if (isDuplicate(new int[] {0, 4}, index, selectedColorIndexes)
+      if (isDuplicate(new long[] {0, 4}, index, selectedColorIndexes)
           || // Disallow dark gray and dark color combo
           isDuplicate(
-              new int[] {2, 3},
+              new long[] {2, 3},
               index,
               selectedColorIndexes)) { // Disallow light gray and light color combo
         index = 1;
@@ -55,7 +55,7 @@ public class Icons {
         Shapes.Outer,
         2,
         3,
-        new int[][] {{1, 0}, {2, 0}, {2, 3}, {1, 3}, {0, 1}, {3, 1}, {3, 2}, {0, 2}},
+        new long[][] {{1, 0}, {2, 0}, {2, 3}, {1, 3}, {0, 1}, {3, 1}, {3, 2}, {0, 2}},
         availableColors,
         selectedColorIndexes,
         (int) x,
@@ -70,7 +70,7 @@ public class Icons {
         Shapes.Outer,
         4,
         5,
-        new int[][] {{0, 0}, {3, 0}, {3, 3}, {0, 3}},
+        new long[][] {{0, 0}, {3, 0}, {3, 3}, {0, 3}},
         availableColors,
         selectedColorIndexes,
         (int) x,
@@ -85,7 +85,7 @@ public class Icons {
         Shapes.Outer,
         1,
         -1,
-        new int[][] {{1, 1}, {2, 1}, {2, 2}, {1, 2}},
+        new long[][] {{1, 1}, {2, 1}, {2, 2}, {1, 2}},
         availableColors,
         selectedColorIndexes,
         (int) x,
@@ -95,7 +95,7 @@ public class Icons {
     renderer.finish();
   }
 
-  static boolean isDuplicate(int[] values, int value, List<Integer> selectedColorIndexes) {
+  static boolean isDuplicate(long[] values, long value, List<Long> selectedColorIndexes) {
     for (int i = 0; i < values.length; i++) {
       if (values[i] == value) {
         for (int j = 0; j < values.length; j++) {
@@ -120,17 +120,19 @@ public class Icons {
       Shapes.ShapeTemplate[] shapes,
       int index,
       int rotationIndex,
-      int[][] positions,
+      long[][] positions,
       String[] availableColors,
-      List<Integer> selectedColorIndexes,
+      List<Long> selectedColorIndexes,
       int x,
       int y,
       int cell) {
-    int r = rotationIndex >= 0 ? parseHex(hash, rotationIndex, 1) : 0;
-    Shapes.ShapeTemplate shape = shapes[parseHex(hash, index, 1) % shapes.length];
+    long r = rotationIndex >= 0 ? parseHex(hash, rotationIndex, 1) : 0;
+    Shapes.ShapeTemplate shape = shapes[((int) parseHex(hash, index, 1)) % shapes.length];
     int i;
 
-    renderer.beginShape(availableColors[selectedColorIndexes.get(colorIndex)]);
+    renderer.beginShape(
+        availableColors[
+            (int) (selectedColorIndexes.get(colorIndex) % selectedColorIndexes.size())]);
 
     for (i = 0; i < positions.length; i++) {
       graphics.setTransformation(

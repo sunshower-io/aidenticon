@@ -1,34 +1,20 @@
 package io.sunshower.aidenticon;
 
-public class Configuration {
+public interface Configuration {
 
+  boolean hasBackgroundColor();
 
+  String getBackgroundColor();
 
-  public boolean hasBackgroundColor() {
-    return false;
-  }
+  int getPadding();
 
-  public String getBackgroundColor() {
-    return 0;
-  }
+  double grayscaleSaturation();
 
-  public int getPadding() {
-    return 0;
-  }
+  double colorSaturation();
 
-  public int grayscaleSaturation() {
-    return 0;
-  }
+  double grayscaleLightness(int i);
 
-  public int colorSaturation() {
-    return 0;
-  }
+  double colorLightness(double v);
 
-  public int grayscaleLightness(int i) {
-    return 0;
-  }
-
-  public int colorLightness(double v) {
-    return 0;
-  }
+  double hue(double h);
 }

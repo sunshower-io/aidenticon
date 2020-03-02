@@ -11,23 +11,23 @@ public class Colors {
 
   public static Pattern pattern = Pattern.compile("^#[0-9a-f]{3,8}$", Pattern.CASE_INSENSITIVE);
 
-  public static String decToHex(int actual) {
+  public static String decToHex(double actual) {
 
     if (actual < 0) {
       return "00";
     }
 
     if (actual < 16) {
-      return "0" + Integer.toString(actual, 16);
+      return "0" + Integer.toString((int) actual, 16);
     }
     if (actual < 256) {
-      return Integer.toString(actual, 16);
+      return Integer.toString((int) actual, 16);
     }
 
     return "ff";
   }
 
-  public static String hueToRgb(int m1, int m2, int h) {
+  public static String hueToRgb(double m1, double m2, double h) {
     h = h < 0 ? h + 6 : h > 6 ? h - 6 : h;
     return decToHex(
         255 * (h < 1 ? m1 + (m2 - m1) * h : h < 3 ? m2 : h < 4 ? m1 + (m2 - m1) * (4 - h) : m1));
@@ -51,19 +51,19 @@ public class Colors {
     throw new IllegalArgumentException("Not a color: " + color);
   }
 
-  public static String correctedHsl(int h, int s, int l) {
+  public static String correctedHsl(double h, double s, double l) {
     double[] correctors = {0.55, 0.5, 0.5, 0.46, 0.6, 0.55, 0.55};
     double corrector = correctors[(int) Math.round(h * 6 + 0.5)];
     l = (int) (l < 0.5 ? l * corrector * 2 : corrector + (l - 0.5) * (1 - corrector) * 2);
     return hsl(h, s, l);
   }
 
-  public static String hsl(int h, int s, int l) {
+  public static String hsl(double h, double s, double l) {
     if (s == 0) {
       var partialHex = decToHex(l * 255);
       return "#" + partialHex + partialHex + partialHex;
     } else {
-      int m2 = l <= 0.5 ? l * (s + 1) : l + s - l * s, m1 = l * 2 - m2;
+      double m2 = l <= 0.5 ? l * (s + 1) : l + s - l * s, m1 = l * 2 - m2;
       return "#"
           + hueToRgb(m1, m2, h * 6 + 2)
           + hueToRgb(m1, m2, h * 6)
@@ -76,7 +76,7 @@ public class Colors {
     if (isNaN(a)) {
       return hexColor;
     }
-    int r = parseHex(hexColor, 1, 2), g = parseHex(hexColor, 3, 2), b = parseHex(hexColor, 5, 2);
+    long r = parseHex(hexColor, 1, 2), g = parseHex(hexColor, 3, 2), b = parseHex(hexColor, 5, 2);
     return "rgba(" + r + "," + g + "," + b + "," + toFixed(((a / 255))) + ")";
   }
 

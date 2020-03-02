@@ -1,12 +1,8 @@
 package io.sunshower.aidenticon.svg;
 
-import io.sunshower.aidenticon.Circle;
-import io.sunshower.aidenticon.Polygon;
-import io.sunshower.aidenticon.Renderer;
-import io.sunshower.aidenticon.Utilities;
+import io.sunshower.aidenticon.*;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -14,20 +10,26 @@ public class SvgRenderer implements Renderer {
   static final Pattern pattern = Pattern.compile("^(#......)(..)?");
 
   private SvgPath path;
+  final int size;
   final SvgElement element;
   final Map<String, SvgPath> pathsByColor;
 
   public SvgRenderer(SvgElement element, int size) {
+    this.size = size;
     this.element = element;
     this.pathsByColor = new HashMap<>();
+  }
+
+  public SvgRenderer() {
+    this(new SvgElement(), Identicon.IdenticonBuilder.Defaults.SIZE);
   }
 
   @Override
   public void setBackgroundColor(String color) {
     var capture = pattern.matcher(color);
     if (capture.groupCount() == 2) {
-      int opacity = Utilities.parseHex(capture.group(1), 0) / 255;
-      this.element.setBackground(capture.group(0), opacity);
+      long opacity = Utilities.parseHex(capture.group(1), 0) / 255;
+      this.element.setBackground(capture.group(0), (int) opacity);
     } else {
       this.element.setBackground(capture.group(0), 1);
     }

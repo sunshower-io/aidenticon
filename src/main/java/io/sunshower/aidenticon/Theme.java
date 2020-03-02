@@ -4,7 +4,8 @@ import static io.sunshower.aidenticon.Colors.correctedHsl;
 
 public class Theme {
 
-  public static String[] colorTheme(int hue, Configuration config) {
+  public static String[] colorTheme(long h, Configuration config) {
+    double hue = config.hue(h);
     return new String[] {
       correctedHsl(hue, config.grayscaleSaturation(), config.grayscaleLightness(0)),
       // Mid color

@@ -1,5 +1,7 @@
 package io.sunshower.aidenticon.svg;
 
+import java.lang.reflect.AnnotatedElement;
+
 public class SvgElement {
 
   final int size;
@@ -17,6 +19,10 @@ public class SvgElement {
 
   public SvgElement() {
     this(new Node("svg"), 100);
+  }
+
+  public Node getElement() {
+    return element;
   }
 
   public SvgElement setBackground(String fill, int opacity) {
